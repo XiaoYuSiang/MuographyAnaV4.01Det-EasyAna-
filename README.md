@@ -14,6 +14,11 @@
 
      /FullLib/FakeDataGenerator.C
 
+8. 更新完成，可以繪製不同板子上的PWIDTH分布，並且可包含簡易篩選的情況(紅色填滿)
+     不同板子的結果是PwidthOfMTB(1,26).gif
+     也可按照分層來繪製9449的所有頻道相對位置上的圖PwidthOfZ(0,4).gif
+     圖片都放在Result資料夾裡面
+   
 
 主程式已大幅簡化，並可直接在ROOT6.30上運行
 ![image](https://github.com/user-attachments/assets/9af8de2c-e262-4b7d-bd76-79a90411f3bc)
