@@ -1,0 +1,53 @@
+
+# DO NOT DELETE
+
+ReadPTXT_C.so: /data4/YuSiang/personalLib/DefaultInclude.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TFile.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TDirectoryFile.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TDirectory.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TNamed.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TObject.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/Rtypes.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/RConfig.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/RVersion.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/DllImport.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/Rtypeinfo.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/snprintf.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/strlcpy.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TGenericClassInfo.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TSchemaHelper.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TStorage.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TVersionCheck.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/Riosfwd.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TBuffer.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TString.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TMathBase.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TList.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TSeqCollection.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TCollection.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TIterator.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TDatime.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TUUID.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TMap.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/THashTable.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TUrl.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TTree.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TBranch.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TObjArray.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TAttFill.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TDataType.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TDictionary.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/Property.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/ESTLType.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TAttLine.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TAttMarker.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TArrayD.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TArray.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TArrayI.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TClass.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TObjString.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/ThreadLocalStorage.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/RConfigure.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/TVirtualTreePlayer.h
+ReadPTXT_C.so: /data4/cmkuo/root/include/cintdictversion.h /data4/cmkuo/root/include/RVersion.h
+ReadPTXT_C__ROOTBUILDVERSION= 5.34/30
