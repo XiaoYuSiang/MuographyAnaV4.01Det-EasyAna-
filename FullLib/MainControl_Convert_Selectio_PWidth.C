@@ -26,17 +26,12 @@ void MainControl_Convert_Selectio_PWidth(){
   /*Convert Raw_Mu.root to be Gap*.root by tcnt cut*/
   system(Form("root -l -b -q %sEventAnaV6.C+\\\(%d\\)",DirMacros.data(),28)); 
 
-  /* P.16 *///-New-
-  /* Pwidth analyze for function fitting and trigger ana. */
-  // gROOT->LoadMacro((path_Mac+"PwidthAna.C+").data());
-  // PwidthAnaV2(OperMode,MainDTcnt);
-  // PwidthAnaV2P(OperMode,MainDTcnt);
-  //PWidthPeakAna(c.bool*OperMode)
+  system(Form("root -l -b -q %sPWidthAnaV401.C+\\\(%d\\)",DirMacros.data(),28)); 
 
 
   
   
-  cout<<"End the Program for:  "<<name_Raw<<endl;
+  cout<<"End the Program for:  "<<name_Raw_txt<<endl;
   throw;
   
 
