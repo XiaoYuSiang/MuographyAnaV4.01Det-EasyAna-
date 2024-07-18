@@ -116,7 +116,7 @@ void PWidthAnaV401(
       pt->Draw();
       
       
-      ctmp->cd(ich+1);
+      ctmp->cd(cIDBack[Dir][ich]*1.+1);
       h1tmp->Draw("h");
       hSEtmp->Draw("histesame");
       h1tmp->Draw("histesame");
