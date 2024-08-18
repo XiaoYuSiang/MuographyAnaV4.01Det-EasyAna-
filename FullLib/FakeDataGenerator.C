@@ -30,7 +30,7 @@ void FakeDataGenerator() {
   int Seq[NBD][NCh]={0};
   int frame_index = 0;
   int ifile = 0;
-  ofs.open(Form("./FakeData_%d_Mu.txt",ifile));
+  ofs.open(Form("/data4/YuSiang/MGFakeData/FakeData_%d_Mu.txt",ifile));
   for (int i = 0; frame_index < n;) {
     if(i-(86400)*(1+ifile)>0){
       ifile++;

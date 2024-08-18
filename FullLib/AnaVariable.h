@@ -16,7 +16,7 @@ using namespace std;
 namespace MuographAnaVariable
 {
   /*Operation variable*/
-  const int cpuCores = 36 ;
+  const int cpuCores = 16 ;
   //The maximum number of cpu cores that can be enabled in situations with multi-threading requirements.
   //Warning: need to notice the other people need to use!!!!!!!!!!
   
@@ -215,22 +215,6 @@ namespace MuographAnaVariable
   
   
   const int    binpw = 90;// for 90 pwidth = 9ms
-  const int V200BTSpXYZ [3][6]= 
-  {
-    {165, 25,175,175, 25,100},
-    { 52, 50, 50,150,150,100},
-    {-25,-14,-14,-14,-14,-14} 
-  };
-  
-  const int V305BTSpXYZ [2][3][6]= 
-  {
-    { { 35,175, 25, 25,175,100},
-      { 52, 50, 50,150,150,100},
-      { 37, 26, 26, 26, 26,-14} },
-    { {165, 25,175,175, 25,100},
-      { 52, 50, 50,150,150,100},
-      {-25,-14,-14,-14,-14,-14} }
-  };
   
   const float V200AngRang[2][5][2]={
     {{0,0},{0,0},{-0.45,0.45},{-0.25,0.25},{-0.15,0.15}},
@@ -299,57 +283,11 @@ namespace MuographAnaVariable
   const Double_t G4eventGap    = 140;
     //suppose pwidth(100s) = EdeptoPWit*Edep(GeV)
   
-  const int MaxRun = 60;
+  const int MaxRun = 80;
   
   
    // const float TriggerMaxFlux = 0.0105;
   const float TriggerMaxFlux = 0.00038;
   
   
-  
-  
-  char detVer[10] = {"V4.01"};  //detector version
-  //number of boards, nuber of channel per board, number of board layers
-  const int    NumBD = 26, NumCh = 16, NumLY = 4;
-  //number of channel on x-axis per board, ... on y-axis ..., , ... on z-axis ..., 
-  const int    NumnX =  4, NumnY =  4, NumnZ = 1;
-  //number of boards on x-axis per layer, ... on y-axis ..., , ... on z-axis ..., 
-  const int    NumBX[NumLY] =  {3,2,2,3};
-  const int    NumBY[NumLY] =  {3,2,2,3};
-  const int    NumBZ[NumLY] =  {1,1,1,1};
-  
-  const int    MotherBoard = 1;
-  //Size of Scintillator on X=bx, Y=by, Z=bz dim. , unit: mm
-  const double bx  = 50., by  = 50., bz  = 12. ;
-  //gap size MTBs on X=bx, Y=by, Z=bz dim. , unit: mm
-  const double gbx = 0  , gby = 0. , gbz = 500.;
-  //half size of Scintillator on XYZ dim
-  const double bx_2 = bx/2., by_2 = by/2., bz_2 = bz/2.;
-  const int    BD[NumBD]   = 
-  {
-    1,2,3,4,5,6,7,8,9,
-    10,11,12,13,
-    14,15,16,17,
-    18,19,20,21,22,23,24,25,26
-  };
-  //MTB ID of a board at position index(ix,iy,iz): BD[ix+NumBY*iy+NumBX*NumBY*iz]
-  const int    BDLay[NumBD]= {
-    0,0,0,0,0,0,0,0,0,
-    1,1,1,1,
-    2,2,2,2,
-    3,3,3,3,3,3,3,3,3
-  };
-  //pwidth scale factor of MTB board because the Magnification of DAQ at index x: BDPwWei[x]
-  const int    BDPwWei[NumBD] = {
-    1,1,1,1,1,1,1,1,1,
-    1,1,1,1,
-    1,1,1,1,
-    1,1,1,1,1,1,1,1,1
-  };
-  const int    DiriB_z[NumBD]={
-    0,1,0,1,0,1,0,1,0,
-    1,0,0,1,
-    1,0,0,1,
-    0,1,0,1,0,1,0,1,0
-  };
 }

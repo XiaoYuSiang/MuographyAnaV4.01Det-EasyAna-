@@ -330,7 +330,7 @@ void DSLAnaV5(const bool MCMode = false, const bool GamaCutMode = false) {
   outh<<"};"<<endl;
   
   outh.close();
-  system(Form("cp %sDSLData.h %sDSLData.h",DirMacros.data(),DirOperate.data()));
+  int NullRet = system(Form("cp %sDSLData.h %sDSLData.h",DirMacros.data(),DirOperate.data()));
   cout<<Form("Save the copy of %sDSLData.h to %sDSLData.h", DirMacros.data(),DirOperate.data())<<endl;;
 }
 

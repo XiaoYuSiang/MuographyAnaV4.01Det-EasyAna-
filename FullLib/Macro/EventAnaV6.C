@@ -26,9 +26,9 @@ vector<string>   vRootFiles;
 vector<string>   vRotFileSepRun[MaxRun];
 vector<Long64_t> vSizeSepRun;
 
-const string FNOEvNumForGap = DirOperate+"%sEvNumForGap.dat";
-const string FNOEvDisplay   = DirOperate+"%sEvDisplay.dat";
-const string FNOEvProblem   = DirOperate+"%sEvProblem.dat";
+const string FNOEvNumForGap = DirOperate+"EvNumForGap.dat";
+const string FNOEvDisplay   = DirOperate+"EvDisplay.dat";
+const string FNOEvProblem   = DirOperate+"EvProblem.dat";
 const int  CPUNum = cpuCores;
 const int  ProcessNum = NumDFiles;
 const float THRIndexConvertRatio[46] = {};// 140 = 0.28
@@ -95,7 +95,7 @@ Long64_t FileSize(const char *CheckFileName, const char OPT ='-'){
 
 
 void EventAnaV6(
-  const int index = 28
+  const int index = 28, const char OPT = 'N'
 ){//140
    
   double eventGap = eventGapTcnt[index]*1.;
@@ -111,7 +111,7 @@ void EventAnaV6(
   
   Long64_t size = FileSize(rtfN);
   cout<<"Checking the option of file: "<<rtfN<<"\tis "<<size<<" Byte."<<endl;
-  if(size > sizeRaw*0.28){
+  if(size > sizeRaw*0.28&&(OPT!='r'&&OPT!='R')){
     TFile *rottmp = new TFile(rtfN,"open");
     TObjString *FlagFinish;
     bool usefulFile = (FlagFinish =(TObjString*) rottmp->Get("FlagFinish"));
@@ -216,6 +216,8 @@ void EventAnaV6(
 
   for (Long64_t ev = 0; ev < ThisFileLastEvent ; ++ev) {
     
+    if(ev%1000==0)
+      cout<<"\r"<<100*ev/float(ThisFileLastEvent)<<"%"<<flush;
     data.GetEntry(ev);
     frame_   = data.GetInt("frame");
     unixtime_= data.GetLong64("unixtime");//fabs time of event [s]

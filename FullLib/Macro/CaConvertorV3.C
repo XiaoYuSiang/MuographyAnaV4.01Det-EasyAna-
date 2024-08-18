@@ -83,7 +83,9 @@ Long64_t FileSize(const char *CheckFileName, const char OPT ='-'){
   if(OPT!='Q'&&OPT!='q') cout << length << " Bytes." << endl;
   return length;
 }
-
+Long64_t FileSize(const std::string& CheckFileName, const char OPT = '-') {
+    return FileSize(CheckFileName.c_str(), OPT);
+}
 void pcntCheck(int board, Long64_t &pcntM, Long64_t &tcntM, Long64_t &tcnt, int &pcnt, int &bad1, int &bad2){
   if(board==MotherBoard||pcntM==0){//@@ FIND
     tcntM = tcnt;
@@ -351,8 +353,8 @@ void CaConvertorV3(
   
 }
 void CaConvertorV3(const char OPT=' '){
-  char path_txts[180], path_filetxt[180];
-  sprintf(path_txts,"%sDataTxtNameAna.dat",DirOperate.data());
+  string path_txts = (DirOperate+"DataTxtNameAna.dat").data();
+  string path_filetxt = "";
   ifstream intxtfile(path_txts);
 
   int Fnum=0;
@@ -360,70 +362,53 @@ void CaConvertorV3(const char OPT=' '){
   ofstream MutiCoreBash(ShfileName.data());
   cout<<"Create muti process bash file: "<<ShfileName.data()<<endl;
   int ibatch = 0;
-  for(; intxtfile>>path_filetxt;Fnum++){
-    char path_fileroot[180], name_fileroot[180];
-    for(int ic = 0 ; ic<180 ; ic++){
-      if(path_filetxt[ic]-DirRawData[ic]!=0){
-        for(int icst = ic ; icst<180 ; icst++){
-          if(path_filetxt[icst]=='.'){
-            //cout<<"pos "<<ic<<" in string"<<path_filetxt<<endl;
-            for(int icrt = ic;icrt<180;icrt++){
-              if(icrt<icst) name_fileroot[icrt-ic] = path_filetxt[icrt];
-              if(icrt>=icst) name_fileroot[icrt-ic] = 0;
-              // cout<<path_filetxt[icrt];
+while (intxtfile >> path_filetxt) {
+        size_t pos = path_filetxt.find(DirRawData);
+        if (pos != string::npos) {
+            string name_fileroot = path_filetxt.substr(DirRawData.size(), path_filetxt.find('.') - DirRawData.size());
+            string path_fileroot = DirRawRoot + name_fileroot + ".root";
+            Long64_t SizeOfRootFile = FileSize(path_fileroot.data());
+
+            if (SizeOfRootFile > 20971520 && (OPT != 'r' && OPT != 'R')) {
+                cout << "Find the Target .root: " << path_filetxt << endl;
+                continue;
             }
-            // cout<<"string: root path:  "<<path_fileroot<<endl;
-            sprintf(path_fileroot,"%s%s.root",DirRawRoot.data(),name_fileroot);
-            Long64_t SizeOfRootFile = FileSize(path_fileroot);
-            if( SizeOfRootFile > 20971520 && (OPT!='r'||OPT!='R') ){
-              //file size > 20 MB && not on "Rewrite" mode
-              cout<<"Find the Target .root: "<<path_filetxt<<endl;
-              break;
+
+            cout << "Converting: " << path_filetxt << endl;
+            Long64_t SizeOfTxtFile = FileSize(path_filetxt.data());
+            Long64_t FrameNumEsti = ceil(SizeOfTxtFile / 6324.0);
+            cout << "  File size: " << SizeOfTxtFile << " Bytes, estimate to be: " << FrameNumEsti << " Frames" << endl;
+            if (SizeOfTxtFile > 2147483648) {
+                cout << "Warning: File Larger than 2GB! use the ProCaConvertor()" << endl;
             }
-            
-            // cout<<"string: root path:  "<<path_fileroot<<endl;
-            cout<<"Converting : "<<path_filetxt<<endl;
-            Long64_t SizeOfTxtFile = FileSize(path_filetxt);
-            Long64_t FrameNumEsti = ceil(SizeOfTxtFile / 6324.);
-            cout<<"  File size: "<<SizeOfTxtFile<<" Bytes, estimate to be: "<< FrameNumEsti<<" Frames"<<endl;
-            if(SizeOfTxtFile> 2147483648) {
-              cout<<"Warning: File Larger than 2GB! use the ProCaConvertor()"<<endl;
-            
-            }
-            int timeDelay = ibatch==0?0:0;
-            cout<<"CaConvertorV2\\("<<path_filetxt<<","<<path_fileroot<<","<<FrameNumEsti<<"\\)"<<endl;
-            
-            // CaConvertor(path_filetxt,path_fileroot,FrameNumEsti);
-            
-            MutiCoreBash<<"sleep "<<timeDelay<<" &&root -l -b "
-              <<DirMacros<<"CaConvertorV3.C+"
+
+            int timeDelay = (ibatch == 0) ? 0 : 0; // 這裡的 timeDelay 設定為 0，可以根據需要調整
+            cout << "CaConvertorV3(" << path_filetxt << ", " << path_fileroot << ", " << FrameNumEsti << ")" << endl;
+
+            // CaConvertor(path_filetxt, path_fileroot, FrameNumEsti);
+
+            MutiCoreBash  
+                << "sleep " << timeDelay << " &&root -l -b "
+                << DirMacros << "CaConvertorV3.C+"
                 <<"\\("
-                  <<"\\\""<<path_filetxt<<"\\\""<<","
-                  <<"\\\""<<path_fileroot<<"\\\""<<","
-                  <<FrameNumEsti
+                <<"\\\""<<path_filetxt<<"\\\""<<","
+                <<"\\\""<<path_fileroot<<"\\\""<<","
+                <<FrameNumEsti
                 <<"\\) &\n";
+             
             ibatch++;
-            if(ibatch==cpuCores){
-              ibatch = 0;
-              MutiCoreBash<<"wait\n";
-            } 
-            
-            cout<<"root file  : "<<path_fileroot<<endl;
-            break;
-          }
+            if (ibatch == cpuCores) {
+                ibatch = 0;
+                MutiCoreBash << "wait\n";
+            }
+
+            cout << "root file: " << path_fileroot << endl;
         }
-        
-        break;
-      }
-      
     }
-    // cout<<name[Fnum]<<endl;
-    
-  }
   MutiCoreBash<<endl<<"wait"<<endl;
   MutiCoreBash<<endl<<"echo Finish all tracking by muti process."<<endl;
   MutiCoreBash.close();
-  system(Form("sh %s",ShfileName.data()));
+  int NullRet = system(Form("sh %s",ShfileName.data()));
   cout<<"\nFinish all process & rm: "<<ShfileName.data()<<endl;
   
 }
